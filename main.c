@@ -17,5 +17,14 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
 	write(1, "Hello Kitty\n", 11);
+	
+	int		i;
+	int		fd;
+
+	i = 1;
+	while (av[i])
+	{
+		fd = open(av[i]);
+	}
 	return (1);
 }
