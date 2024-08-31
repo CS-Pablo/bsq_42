@@ -23,9 +23,15 @@ char    *ft_strjoin(char *s1, char *s2);
 int     ft_strlen(char *str);
 int     ft_atoi(char *str);
 #define		BUFF_SIZE	4
+
 #define     BIT_1       0x80
 #define     BIT_2       0x40
 #define     BIT_3       0x20
 #define     BIT_4       0x10
+#define     BIT_5       0x08
+#define     BIT_6       0x04
+#define     BIT_7       0x02
+#define     BIT_8       0x01
+
 
 #endif

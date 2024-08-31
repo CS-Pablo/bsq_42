@@ -21,9 +21,31 @@ char	*ft_read_number(char *str, int *nb)
 	return (str);
 }
 
-char	*ft_read_char(char *str, int )
+char	*ft_read_char(char *str, char *grid_char)
 {
+	int		i;
+	int		j;
 
+	i = 0;
+	while (i < 3)
+	{
+		if (!str[i] || !(str[i] >= ' ' && str[i] <= '~'))
+			return (NULL);
+		j = i + 1;
+		while (j < 3)
+		{
+			if (str[i] == str[j])
+				return (NULL);
+			j++;
+		}
+		i++;
+	}
+	if (str[3] != '\n')
+		return (NULL);
+	grid_char[0] = str[0];
+	grid_char[1] = str[1];
+	grid_char[2] = str[2];
+	return (str + 4);
 }
 
 char	*ft_check_entry(char *entry, int *x_y, char *grid_char)
@@ -37,7 +59,8 @@ char	*ft_check_entry(char *entry, int *x_y, char *grid_char)
 	ptr = ft_read_number(entry, x_y + 1);
 	if (!x_y[1])
 		return (NULL);
-	ptr = ft_read_char(ptr, x_y)
+	ptr = ft_read_char(ptr, grid_char);
+	printf("%s\n", ptr);
 	return (NULL);
 }
 
