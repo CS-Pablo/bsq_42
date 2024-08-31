@@ -20,8 +20,10 @@ int	main(int ac, char **av)
 
 	int		i;
 	int		fd;
-	char	buff[BUFF_SIZE];
+	char	buff[BUFF_SIZE + 1];
 	int		n_read;
+	char	*entry;
+	char	*tmp;
 
 	//printf("ac = %d\n", ac);
 	i = 0;
@@ -31,9 +33,22 @@ int	main(int ac, char **av)
 		fd = open(av[i],  O_RDONLY);
 		if (fd == -1)
 			return (-1);
-		n_read = read(fd, buff, BUFF_SIZE);
-		buff[n_read] = '\0';
-		printf("%s", buff);
+		entry = NULL;
+		n_read = 1;
+		while (n_read)
+		{
+			n_read = read(fd, buff, BUFF_SIZE);
+			buff[n_read] = '\0';
+			//printf("%s", buff);
+			if (!entry)
+				entry = ft_strdup(buff);
+			else
+			{
+				tmp = entry;
+				entry = ft_strjoin(entry, buff);
+				free (tmp);
+			}
+		}
 		i++;
 	}
 	return (1);
