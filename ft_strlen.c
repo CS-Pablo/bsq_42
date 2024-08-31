@@ -6,8 +6,17 @@
 /*   By: csauron <csauron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 04:14:02 by csauron           #+#    #+#             */
-/*   Updated: 2024/08/31 04:16:23 by csauron          ###   ########.fr       */
+/*   Updated: 2024/08/31 04:21:06 by csauron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int     *ft_strlen()
+int     *ft_strlen(char *s)
+{
+    char *ptr;
+    ptr = s;
+        while(*ptr != '\0')
+        {
+            ptr++;
+        }
+        return(ptr - s);
+}
