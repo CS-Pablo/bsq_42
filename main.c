@@ -20,16 +20,22 @@ int	main(int ac, char **av)
 	(void)av;
 
 	int		i;
+	char	*entry;
+	int		lign;
+	char	grid_char[3];
+
+	/********** */
 	int		fd;
 	char	buff[BUFF_SIZE + 1];
 	int		n_read;
-	char	*entry;
 	char	*tmp;
+	/*************** */
 
 	//printf("ac = %d\n", ac);
 	i = 1;
 	while (av[i])
 	{
+		/*********************************************** */
 		//printf("av[%d]= \"%s\"\n", i, av[i]);
 		fd = open(av[i],  O_RDONLY);
 		if (fd == -1)
@@ -53,7 +59,8 @@ int	main(int ac, char **av)
 			buff[n_read] = '\0';
 		}
 		//printf("%s", entry);
-		
+		/***************************************************** */
+		ft_check_entry()
 		i++;
 	}
 	return (1);
