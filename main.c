@@ -60,7 +60,7 @@ int	main(int ac, char **av)
 		}
 		//printf("%s", entry);
 		/***************************************************** */
-		ft_check_entry()
+		ft_check_entry();
 		i++;
 	}
 	return (1);
