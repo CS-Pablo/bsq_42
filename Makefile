@@ -1,8 +1,8 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 TARGET = bsq
-SRCS = main.c
-OBJS = main.o
+SRCS = main.c ft_strdup.c
+OBJS = main.o ft_strdup.o
 
 all: $(TARGET)
 

@@ -10,21 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
+
+#include "bsq.h"
 
 int	main(int ac, char **av)
 {
 	(void)ac;
-	(void)av;
-	write(1, "Hello Kitty\n", 11);
-	
+
 	int		i;
 	int		fd;
+	char	buff[BUFF_SIZE];
+	int		n_read;
 
-	i = 1;
+	//printf("ac = %d\n", ac);
+	i = 0;
 	while (av[i])
 	{
-		fd = open(av[i]);
+		//printf("av[%d]= \"%s\"\n", i, av[i]);
+		fd = open(av[i],  O_RDONLY);
+		if (fd == -1)
+			return (-1);
+		n_read = read(fd, buff, BUFF_SIZE);
+		buff[n_read] = '\0';
+		printf("%s", buff);
+		i++;
 	}
 	return (1);
 }
