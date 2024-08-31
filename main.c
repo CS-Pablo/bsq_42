@@ -10,9 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+<<<<<<< HEAD
 #include <stdio.h>
 
 #include "bsq.h"
+=======
+#include <unistd.h>
+#include <fcntl.h>
+
+>>>>>>> refs/remotes/origin/main
 
 int	main(int ac, char **av)
 {
