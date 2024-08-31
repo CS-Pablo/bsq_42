@@ -14,15 +14,42 @@
 
 #include "bsq.h"
 
+char	*ft_read_number(char *str, int *nb)
+{
+	while (*str && (*str >= '0' && *str <= '9'))
+		*nb = (*nb * 10) + (*str++ - '0');
+	return (str);
+}
+
+char	*ft_read_char(char *str, int )
+{
+
+}
+
+char	*ft_check_entry(char *entry, int *x_y, char *grid_char)
+{
+	(void)entry;
+	(void)x_y;
+	(void)grid_char;
+	char	*ptr;
+
+	x_y[1] = 0;
+	ptr = ft_read_number(entry, x_y + 1);
+	if (!x_y[1])
+		return (NULL);
+	ptr = ft_read_char(ptr, x_y)
+	return (NULL);
+}
+
 int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
 
-	int		i;
 	char	*entry;
-	int		lign;
+	int		x_y[2];
 	char	grid_char[3];
+	char	*grid;
 
 	/********** */
 	int		fd;
@@ -32,12 +59,12 @@ int	main(int ac, char **av)
 	/*************** */
 
 	//printf("ac = %d\n", ac);
-	i = 1;
-	while (av[i])
+	av++;
+	while (*av)
 	{
 		/*********************************************** */
 		//printf("av[%d]= \"%s\"\n", i, av[i]);
-		fd = open(av[i],  O_RDONLY);
+		fd = open(*av,  O_RDONLY);
 		if (fd == -1)
 			return (-1);
 		entry = NULL;
@@ -60,8 +87,9 @@ int	main(int ac, char **av)
 		}
 		//printf("%s", entry);
 		/***************************************************** */
-		ft_check_entry();
-		i++;
+		grid = ft_check_entry(entry, x_y, grid_char);
+		(void)grid;
+		*av = *av + 1;		
 	}
 	return (1);
 }

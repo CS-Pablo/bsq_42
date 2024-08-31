@@ -21,6 +21,7 @@
 char    *ft_strdup(char *src);
 char    *ft_strjoin(char *s1, char *s2);
 int     ft_strlen(char *str);
+int     ft_atoi(char *str);
 #define		BUFF_SIZE	4
 #define     BIT_1       0x80
 #define     BIT_2       0x40
