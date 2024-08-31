@@ -17,6 +17,7 @@
 int	main(int ac, char **av)
 {
 	(void)ac;
+	(void)av;
 
 	int		i;
 	int		fd;
@@ -26,7 +27,7 @@ int	main(int ac, char **av)
 	char	*tmp;
 
 	//printf("ac = %d\n", ac);
-	i = 0;
+	i = 1;
 	while (av[i])
 	{
 		//printf("av[%d]= \"%s\"\n", i, av[i]);
@@ -34,12 +35,12 @@ int	main(int ac, char **av)
 		if (fd == -1)
 			return (-1);
 		entry = NULL;
-		n_read = 1;
+		n_read = read(fd, buff, BUFF_SIZE);
+		buff[n_read] = '\0';
 		while (n_read)
 		{
-			n_read = read(fd, buff, BUFF_SIZE);
-			buff[n_read] = '\0';
 			//printf("%s", buff);
+			//printf("\nhere\n");
 			if (!entry)
 				entry = ft_strdup(buff);
 			else
@@ -48,7 +49,11 @@ int	main(int ac, char **av)
 				entry = ft_strjoin(entry, buff);
 				free (tmp);
 			}
+			n_read = read(fd, buff, BUFF_SIZE);
+			buff[n_read] = '\0';
 		}
+		//printf("%s", entry);
+		
 		i++;
 	}
 	return (1);
