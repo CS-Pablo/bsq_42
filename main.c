@@ -54,18 +54,28 @@ int		ft_check_grid(char *str, int *x_y, char* grid_char)
 	int		j;
 
 	(void)str;
+	(void)i;
+	(void)j;
+	(void)x_y;
+	(void)grid_char;
+
 	x_y[0] = 0;
 	printf("g1 = %c\n", grid_char[1]);
 	j = 0;
 	while (str[i] && j < x_y[1])
 	{
 		i = 0;
-		while (str[i] && str[i] != '\n' && (x_y[0] == 0 || i < x_y[0]))
+		while (str[i] && str[i] != '\n')
 		{
-		i++;
+			if (str[i] != grid_char[0] || str[i] != grid_char[1])
+				return (0);
+			i++;
 		}
+		if (str[i] == '\n' <)
 	j += i + 1; 
 	}
+
+	printf("%s", str);
 	return (1);
 }
 
