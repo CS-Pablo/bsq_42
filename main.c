@@ -6,7 +6,7 @@
 /*   By: csauron <csauron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 23:23:16 by onegre            #+#    #+#             */
-/*   Updated: 2024/09/01 16:14:04 by csauron          ###   ########.fr       */
+/*   Updated: 2024/09/01 16:14:08 by csauron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		ft_check_grid(char *str, int *x_y, char* grid_char)
 
 	(void)str;
 	x_y[0] = 0;
-	//printf("g1 = %c\n", grid_char[1]);
+	printf("g1 = %c\n", grid_char[1]);
 	j = 0;
 	while (j < x_y[1] || str[i] != '\0')
 	{
