@@ -48,71 +48,143 @@ char	*ft_read_char(char *str, char *grid_char)
 	return (str + 4);
 }
 
+int		ft_check_grid(char *str, int *x_y, char* grid_char)
+{
+	int		i;
+	int		j;
+
+	(void)str;
+	x_y[0] = 0;
+	//printf("g1 = %c\n", grid_char[1]);
+	j = 0;
+	while (j < x_y[1] || str[i] != '\0')
+	{
+		i = 0;
+		while (str[i] != '\n' && (x_y[0] == 0 || x_y[0]))
+		{
+
+		}
+	j += i + 1; 
+	}
+	return (1);
+}
+
+char	*ft_read_grid(char *str, char *grid, int *x_y, char *grid_char)
+{
+	int		ok;
+
+	(void)grid;
+	ok = 1;
+	(void)ok;
+	ok = ft_check_grid(str, x_y, grid_char);
+	return (NULL);
+}
+
 char	*ft_check_entry(char *entry, int *x_y, char *grid_char)
 {
 	(void)entry;
 	(void)x_y;
 	(void)grid_char;
 	char	*ptr;
+	char	*grid;
 
 	x_y[1] = 0;
 	ptr = ft_read_number(entry, x_y + 1);
 	if (!x_y[1])
 		return (NULL);
 	ptr = ft_read_char(ptr, grid_char);
-	printf("%s\n", ptr);
+	if (!ptr)
+		return (NULL);
+	//printf("%s\n", ptr);
+	grid = NULL;
+	grid = ft_read_grid(ptr, grid, x_y, grid_char);
 	return (NULL);
 }
-
-int	main(int ac, char **av)
+char	*ft_read_file(int fd)
 {
-	(void)ac;
-	(void)av;
-
+	char	buff[BUFF_SIZE + 1];
+	int		n_read;
+	char	*tmp;
 	char	*entry;
+
+	entry = NULL;
+	n_read = read(fd, buff, BUFF_SIZE);
+	buff[n_read] = '\0';
+	while (n_read)
+	{
+		//printf("%s", buff);
+		//printf("\nhere\n");
+		if (!entry)
+			entry = ft_strdup(buff);
+		else
+		{
+			tmp = entry;
+			entry = ft_strjoin(entry, buff);
+			free (tmp);
+		}
+		n_read = read(fd, buff, BUFF_SIZE);
+		buff[n_read] = '\0';
+	}
+	return (entry);
+}
+
+int		ft_map_error(char *to_free, char *to_free2)
+{
+	if (to_free)
+		free(to_free);
+	if (to_free2)
+		free(to_free2);
+	write(2, "map error\n", 10);
+	return (-1);
+}
+
+int		ft_solve(char *entry)
+{
 	int		x_y[2];
 	char	grid_char[3];
 	char	*grid;
 
-	/********** */
-	int		fd;
-	char	buff[BUFF_SIZE + 1];
-	int		n_read;
-	char	*tmp;
-	/*************** */
+	grid = ft_check_entry(entry, x_y, grid_char);
+	(void)grid;
+	return (1);
+}
 
-	//printf("ac = %d\n", ac);
-	av++;
-	while (*av)
+int	main(int ac, char **av)
+{
+	char	*entry;
+	int		i;
+	int  	fd;
+
+	i = 1;
+	while (i < ac)
 	{
-		/*********************************************** */
-		//printf("av[%d]= \"%s\"\n", i, av[i]);
-		fd = open(*av,  O_RDONLY);
-		if (fd == -1)
-			return (-1);
-		entry = NULL;
-		n_read = read(fd, buff, BUFF_SIZE);
-		buff[n_read] = '\0';
-		while (n_read)
+		//printf("i = %d\n", i);
+		if (i > 1)
+			write(1, "\n", 1);
+			//printf("Z\n");
+
+		if (ac == 1)
 		{
-			//printf("%s", buff);
-			//printf("\nhere\n");
-			if (!entry)
-				entry = ft_strdup(buff);
-			else
-			{
-				tmp = entry;
-				entry = ft_strjoin(entry, buff);
-				free (tmp);
-			}
-			n_read = read(fd, buff, BUFF_SIZE);
-			buff[n_read] = '\0';
+			//write(1, "never here!\n", 12);
+			fd = 1;
 		}
-		//printf("%s", entry);
-		/***************************************************** */
-		grid = ft_check_entry(entry, x_y, grid_char);
-		(void)grid;
-		*av = *av + 1;		
+		else
+			fd = open(av[i],  O_RDONLY);
+		if (fd == -1)
+		{
+			//write(1, "hello kitty!\n", 13);
+			ft_map_error(0, 0);
+		}
+		else
+		{
+			//write(1, "hello miou!\n", 12);
+			entry = ft_read_file(fd);
+			if (!entry)
+				ft_map_error(0, 0);
+			else
+				ft_solve(entry);
+		}
+		i++;
 	}
 	return (1);
 }
