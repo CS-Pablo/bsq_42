@@ -52,6 +52,7 @@ int		ft_check_grid(char *str, int *x_y, char* grid_char)
 {
 	int		i;
 	int		j;
+	int		k;
 
 	(void)str;
 	(void)i;
@@ -61,28 +62,36 @@ int		ft_check_grid(char *str, int *x_y, char* grid_char)
 
 	x_y[0] = 0;
 	//printf("\n\n\n\ng1 = %c\n", grid_char[1]);
-	/*
+	
 	j = 0;
-	while (str[i] && j < x_y[1])
+	k = 0;
+	while (str[k] && j < x_y[1])
 	{
+		printf("hello0\n");
 		i = 0;
-		while (str[i] && str[i] != '\n')
+		while (str[k + i] && str[k + i] != '\n')
 		{
-			if (str[i] != grid_char[0] || str[i] != grid_char[1])
+			printf("hello1\n");
+			if (str[k] != grid_char[0] && str[k] != grid_char[k])
 				return (0);
 			i++;
 		}
-		if (str[i] == '\n')
+		if (str[k + i] == '\n')
 		{
-			if (x_y == 0)
-				{
-					printf("ICI\n");
-				}
+			printf("hello2\n");
+			if (x_y[0] == 0)
+			{
+				x_y[0] = i;
+				//printf("ICI\n");
+			}
+			else if (i != x_y[0])
+				return (0);
 		}
-	j += i + 1; 
+		printf("hello3\n");
+		j++; 
 	}
-*/
-	printf("%s", str);
+
+	//printf("%s", str);
 	return (1);
 }
 
@@ -94,6 +103,8 @@ char	*ft_read_grid(char *str, char *grid, int *x_y, char *grid_char)
 	ok = 1;
 	(void)ok;
 	ok = ft_check_grid(str, x_y, grid_char);
+	if(!ok)
+		return (NULL);
 	return (NULL);
 }
 
