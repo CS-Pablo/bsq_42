@@ -91,7 +91,7 @@ int		ft_check_grid(char *str, int *x_y, char* grid_char)
 		j++; 
 	}
 
-	//printf("%s", str);
+	printf("%s", str);
 	return (1);
 }
 
